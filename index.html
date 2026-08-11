@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vajra Healthy Living — Ayurveda, Rebalanced</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+ul{list-style:none;}
+input,select,textarea{font:inherit;color:inherit;}
+
+/* ============ TOKENS ============ */
+:root{
+  --ink:#1C1A24;
+  --ink-soft:#272430;
+  --ink-softer:#332F3D;
+  --stone:#EFE7D8;
+  --paper:#FBF8F1;
+  --vata:#7E9BC2;
+  --vata-deep:#4F6E99;
+  --pitta:#C1502E;
+  --pitta-deep:#963B20;
+  --kapha:#5B7553;
+  --kapha-deep:#425A3B;
+  --gold:#B8923F;
+  --gold-light:#D9BD7C;
+  --text-dark:#211F29;
+  --text-mute:#5B5768;
+  --text-light:#F7F3EA;
+  --text-light-mute:#C7C2D6;
+  --radius:2px;
+  --maxw:1180px;
+  --serif:'Fraunces',serif;
+  --sans:'Work Sans',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important;}
+}
+
+body{
+  font-family:var(--sans);
+  color:var(--text-dark);
+  background:var(--paper);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.08;letter-spacing:-0.01em;}
+.eyebrow{
+  font-family:var(--mono);
+  font-size:0.72rem;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--gold);
+  display:inline-flex;
+  align-items:center;
+  gap:0.5em;
+}
+.eyebrow::before{content:'';width:20px;height:1px;background:var(--gold);display:inline-block;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+button:focus-visible, a:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+
+/* ============ NAV ============ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:rgba(28,26,36,0.94);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(184,146,63,0.28);
+}
+.nav-inner{
+  max-width:var(--maxw);margin:0 auto;padding:0 32px;
+  height:74px;display:flex;align-items:center;justify-content:space-between;
+}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand svg{width:30px;height:30px;flex-shrink:0;}
+.brand-text{display:flex;flex-direction:column;line-height:1;}
+.brand-text .name{font-family:var(--serif);font-weight:600;font-size:1.18rem;color:var(--text-light);letter-spacing:0.02em;}
+.brand-text .sub{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-light);margin-top:3px;}
+.nav-links{display:flex;align-items:center;gap:2px;}
+.nav-links a{
+  font-family:var(--mono);font-size:0.78rem;letter-spacing:0.04em;
+  color:var(--text-light-mute);padding:10px 16px;position:relative;
+  transition:color 0.2s ease;
+}
+.nav-links a:hover{color:var(--text-light);}
+.nav-links a.active{color:var(--gold-light);}
+.nav-links a.active::after{
+  content:'';position:absolute;bottom:2px;left:16px;right:16px;height:1px;background:var(--gold);
+}
+.nav-actions{display:flex;align-items:center;gap:14px;}
+.cart-btn{
+  position:relative;display:flex;align-items:center;gap:6px;
+  color:var(--text-light);font-family:var(--mono);font-size:0.78rem;
+  border:1px solid rgba(184,146,63,0.4);padding:8px 14px;border-radius:var(--radius);
+  transition:border-color 0.2s ease, background 0.2s ease;
+}
+.cart-btn:hover{border-color:var(--gold);background:rgba(184,146,63,0.08);}
+.cart-badge{
+  background:var(--pitta);color:var(--text-light);font-size:0.65rem;
+  width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:var(--sans);font-weight:600;
+}
+.menu-toggle{display:none;color:var(--text-light);width:34px;height:34px;align-items:center;justify-content:center;}
+.menu-toggle svg{width:22px;height:22px;}
+
+@media (max-width:920px){
+  .nav-links{
+    position:fixed;top:74px;left:0;right:0;background:var(--ink);
+    flex-direction:column;align-items:stretch;padding:8px 24px 20px;
+    border-bottom:1px solid rgba(184,146,63,0.28);
+    transform:translateY(-8px);opacity:0;pointer-events:none;transition:all 0.22s ease;
+  }
+  .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto;}
+  .nav-links a{padding:12px 4px;border-bottom:1px solid rgba(255,255,255,0.06);}
+  .menu-toggle{display:flex;}
+}
+
+/* ============ PAGES ============ */
+.page{display:none;}
+.page.active{display:block;animation:fadein 0.4s ease;}
+@keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* ============ HERO (home) ============ */
+.hero{
+  background:var(--ink);
+  color:var(--text-light);
+  padding:168px 0 100px;
+  position:relative;
+  overflow:hidden;
+}
+.hero-grid{
+  display:grid;grid-template-columns:1.15fr 0.85fr;gap:60px;align-items:center;
+  position:relative;z-index:2;
+}
+.hero h1{
+  font-size:clamp(2.6rem,5vw,4.1rem);
+  color:var(--text-light);
+  max-width:11.5ch;
+}
+.hero h1 em{font-style:italic;color:var(--gold-light);font-weight:500;}
+.hero p.lede{
+  margin-top:26px;font-size:1.12rem;color:var(--text-light-mute);max-width:46ch;font-weight:300;
+}
+.hero-ctas{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap;}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 26px;font-family:var(--mono);font-size:0.8rem;letter-spacing:0.04em;
+  border-radius:var(--radius);transition:all 0.2s ease;
+}
+.btn-primary{background:var(--gold);color:var(--ink);}
+.btn-primary:hover{background:var(--gold-light);}
+.btn-ghost{border:1px solid rgba(247,243,234,0.35);color:var(--text-light);}
+.btn-ghost:hover{border-color:var(--text-light);background:rgba(247,243,234,0.06);}
+
+.vajra-hero-mark{width:100%;max-width:340px;margin:0 auto;position:relative;}
+.vajra-hero-mark svg{width:100%;height:auto;}
+.orbit{animation:spin 60s linear infinite;transform-origin:center;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+.hero-strip{
+  margin-top:76px;padding-top:36px;border-top:1px solid rgba(247,243,234,0.14);
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;position:relative;z-index:2;
+}
+.hero-strip .stat b{font-family:var(--serif);font-size:1.7rem;color:var(--gold-light);display:block;font-weight:600;}
+.hero-strip .stat span{font-family:var(--mono);font-size:0.72rem;color:var(--text-light-mute);letter-spacing:0.04em;}
+
+/* Pillars (home) */
+.pillars{padding:96px 0;background:var(--paper);}
+.section-head{max-width:640px;margin-bottom:56px;}
+.section-head h2{font-size:clamp(1.9rem,3.4vw,2.6rem);margin-top:14px;color:var(--text-dark);}
+.section-head p{margin-top:16px;color:var(--text-mute);font-size:1.02rem;}
+
+.pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(33,31,41,0.1);border:1px solid rgba(33,31,41,0.1);}
+.pillar-card{background:var(--paper);padding:38px 32px;transition:background 0.25s ease;}
+.pillar-card:hover{background:var(--stone);}
+.pillar-card .dot{width:11px;height:11px;border-radius:50%;margin-bottom:20px;}
+.pillar-card.vata .dot{background:var(--vata);}
+.pillar-card.pitta .dot{background:var(--pitta);}
+.pillar-card.kapha .dot{background:var(--kapha);}
+.pillar-card h3{font-size:1.3rem;margin-bottom:10px;}
+.pillar-card .tag{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-mute);display:block;margin-bottom:14px;}
+.pillar-card p{color:var(--text-mute);font-size:0.94rem;}
+
+/* Tridosha diagram (shared, home teaser + full ayurveda page) */
+.tridosha-wrap{display:flex;justify-content:center;padding:20px 0;}
+.tridosha-wrap svg{width:100%;max-width:380px;height:auto;}
+
+/* Band CTA */
+.band{background:var(--ink-soft);color:var(--text-light);padding:80px 0;text-align:center;}
+.band h2{color:var(--text-light);font-size:clamp(1.8rem,3.6vw,2.5rem);max-width:20ch;margin:14px auto 30px;}
+.band .ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+
+/* ============ AYURVEDA PAGE ============ */
+.page-header{
+  background:var(--ink);color:var(--text-light);padding:150px 0 70px;
+}
+.page-header h1{color:var(--text-light);font-size:clamp(2.3rem,4.4vw,3.4rem);margin-top:14px;max-width:16ch;}
+.page-header p{margin-top:18px;color:var(--text-light-mute);max-width:56ch;font-size:1.05rem;font-weight:300;}
+
+.timeline{padding:90px 0;border-bottom:1px solid rgba(33,31,41,0.1);}
+.timeline-list{position:relative;margin-top:50px;padding-left:28px;border-left:1px solid rgba(33,31,41,0.18);}
+.tl-item{position:relative;padding-bottom:44px;padding-left:32px;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-item::before{
+  content:'';position:absolute;left:-37px;top:4px;width:9px;height:9px;border-radius:50%;
+  background:var(--gold);border:2px solid var(--paper);
+}
+.tl-item .era{font-family:var(--mono);font-size:0.75rem;color:var(--gold);letter-spacing:0.06em;}
+.tl-item h4{font-size:1.2rem;margin-top:6px;margin-bottom:8px;}
+.tl-item p{color:var(--text-mute);font-size:0.95rem;max-width:62ch;}
+
+.doshas-section{padding:90px 0;background:var(--stone);}
+.dosha-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:50px;}
+.dosha-card{
+  background:var(--paper);border-top:4px solid var(--c);padding:32px 28px;border-radius:var(--radius);
+}
+.dosha-card .glyph{width:44px;height:44px;margin-bottom:18px;}
+.dosha-card h3{font-size:1.55rem;}
+.dosha-card .elements{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.04em;color:var(--text-mute);margin-top:6px;text-transform:uppercase;}
+.dosha-card .divider{height:1px;background:rgba(33,31,41,0.12);margin:20px 0;}
+.dosha-card .qualities{font-size:0.88rem;color:var(--text-mute);margin-bottom:16px;}
+.dosha-card .state{margin-bottom:12px;}
+.dosha-card .state b{display:block;font-family:var(--mono);font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;}
+.dosha-card .state.balanced b{color:var(--kapha-deep);}
+.dosha-card .state.imbalanced b{color:var(--pitta-deep);}
+.dosha-card .state p{font-size:0.88rem;color:var(--text-mute);}
+
+.treatment-section{padding:90px 0;}
+.treat-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:50px;}
+.treat-card h4{font-size:1.25rem;margin-bottom:10px;display:flex;align-items:baseline;gap:10px;}
+.treat-card h4 .num{font-family:var(--mono);font-size:0.8rem;color:var(--gold);}
+.treat-card p{color:var(--text-mute);font-size:0.94rem;}
+.panchakarma-list{margin-top:14px;display:flex;flex-direction:column;gap:8px;}
+.panchakarma-list li{font-size:0.88rem;color:var(--text-mute);padding-left:16px;position:relative;}
+.panchakarma-list li::before{content:'—';position:absolute;left:0;color:var(--gold);}
+
+/* ============ SHOP ============ */
+.shop-filters{
+  display:flex;gap:10px;flex-wrap:wrap;margin:40px 0 46px;
+}
+.filter-btn{
+  font-family:var(--mono);font-size:0.75rem;letter-spacing:0.03em;
+  padding:9px 18px;border:1px solid rgba(33,31,41,0.2);border-radius:20px;
+  color:var(--text-mute);transition:all 0.2s ease;
+}
+.filter-btn:hover{border-color:var(--text-dark);color:var(--text-dark);}
+.filter-btn.active{background:var(--ink);color:var(--text-light);border-color:var(--ink);}
+
+.product-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:26px;padding-bottom:90px;
+}
+.product-card{
+  background:var(--paper);border:1px solid rgba(33,31,41,0.1);border-radius:var(--radius);
+  overflow:hidden;display:flex;flex-direction:column;transition:transform 0.2s ease, box-shadow 0.2s ease;
+}
+.product-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(28,26,36,0.09);}
+.product-media{
+  aspect-ratio:1/0.82;background:var(--stone);position:relative;display:flex;align-items:center;justify-content:center;
+  padding:20px;
+}
+.product-media svg{width:56%;height:56%;}
+.dosha-chip{
+  position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:0.62rem;letter-spacing:0.05em;
+  text-transform:uppercase;padding:4px 9px;border-radius:12px;color:var(--text-light);
+}
+.product-body{padding:20px 20px 22px;display:flex;flex-direction:column;flex:1;}
+.product-body .cat{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-mute);}
+.product-body h3{font-size:1.08rem;margin:8px 0 6px;}
+.product-body .desc{font-size:0.85rem;color:var(--text-mute);flex:1;margin-bottom:16px;}
+.product-foot{display:flex;align-items:center;justify-content:space-between;}
+.price{font-family:var(--serif);font-weight:600;font-size:1.15rem;}
+.add-btn{
+  font-family:var(--mono);font-size:0.72rem;letter-spacing:0.03em;
+  padding:9px 15px;border:1px solid var(--ink);border-radius:var(--radius);
+  transition:all 0.2s ease;
+}
+.add-btn:hover{background:var(--ink);color:var(--text-light);}
+.add-btn.added{background:var(--kapha-deep);border-color:var(--kapha-deep);color:var(--text-light);}
+
+/* Cart modal */
+.overlay{
+  position:fixed;inset:0;background:rgba(28,26,36,0.55);z-index:400;
+  display:none;align-items:center;justify-content:center;padding:24px;
+}
+.overlay.open{display:flex;}
+.modal{
+  background:var(--paper);max-width:460px;width:100%;max-height:82vh;overflow-y:auto;
+  border-radius:var(--radius);padding:34px;position:relative;
+}
+.modal-close{position:absolute;top:18px;right:18px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;color:var(--text-mute);}
+.modal-close:hover{color:var(--text-dark);}
+.modal h3{font-size:1.4rem;margin-bottom:20px;}
+.cart-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(33,31,41,0.1);}
+.cart-row .ci-name{font-size:0.92rem;}
+.cart-row .ci-meta{font-family:var(--mono);font-size:0.72rem;color:var(--text-mute);margin-top:3px;}
+.cart-row .ci-remove{font-family:var(--mono);font-size:0.7rem;color:var(--pitta);}
+.cart-total{display:flex;justify-content:space-between;padding-top:18px;margin-top:6px;font-family:var(--serif);font-weight:600;font-size:1.15rem;}
+.cart-empty{color:var(--text-mute);font-size:0.92rem;padding:20px 0;text-align:center;}
+.checkout-note{font-size:0.78rem;color:var(--text-mute);margin-top:18px;line-height:1.5;}
+
+/* ============ CONSULTATION ============ */
+.consult-intro{padding:90px 0 20px;}
+.practitioners{padding:60px 0 90px;}
+.prac-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px;}
+.prac-card{background:var(--paper);border:1px solid rgba(33,31,41,0.1);padding:28px 26px;border-radius:var(--radius);}
+.prac-avatar{
+  width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-weight:600;font-size:1.3rem;color:var(--text-light);margin-bottom:18px;
+}
+.prac-card h4{font-size:1.12rem;}
+.prac-card .cred{font-family:var(--mono);font-size:0.68rem;color:var(--text-mute);letter-spacing:0.03em;margin-top:4px;text-transform:uppercase;}
+.prac-card .focus{font-size:0.88rem;color:var(--text-mute);margin-top:14px;}
+.prac-card .years{font-family:var(--mono);font-size:0.72rem;color:var(--gold);margin-top:14px;display:block;}
+
+.booking-section{background:var(--ink);color:var(--text-light);padding:90px 0 100px;}
+.booking-section .section-head h2{color:var(--text-light);}
+.booking-section .section-head p{color:var(--text-light-mute);}
+.booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;margin-top:44px;align-items:start;}
+.form-group{margin-bottom:20px;}
+.form-group label{
+  display:block;font-family:var(--mono);font-size:0.7rem;letter-spacing:0.05em;text-transform:uppercase;
+  color:var(--gold-light);margin-bottom:8px;
+}
+.form-group input,.form-group select,.form-group textarea{
+  width:100%;background:rgba(247,243,234,0.06);border:1px solid rgba(247,243,234,0.22);
+  padding:12px 14px;border-radius:var(--radius);color:var(--text-light);font-size:0.92rem;
+  transition:border-color 0.2s ease;
+}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(247,243,234,0.35);}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold);outline:none;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-group select option{color:var(--text-dark);}
+.booking-info h4{color:var(--text-light);font-size:1.15rem;margin-bottom:14px;}
+.booking-info ul{display:flex;flex-direction:column;gap:12px;}
+.booking-info li{font-size:0.9rem;color:var(--text-light-mute);padding-left:20px;position:relative;}
+.booking-info li::before{content:'✧';position:absolute;left:0;color:var(--gold);}
+.confirm-panel{
+  display:none;border:1px solid var(--gold);padding:26px;border-radius:var(--radius);margin-top:24px;background:rgba(184,146,63,0.08);
+}
+.confirm-panel.show{display:block;}
+.confirm-panel h4{color:var(--gold-light);font-size:1.05rem;margin-bottom:8px;}
+.confirm-panel p{font-size:0.88rem;color:var(--text-light-mute);}
+
+/* ============ BLOGS ============ */
+.blog-hero{padding:150px 0 60px;background:var(--ink);color:var(--text-light);}
+.blog-hero h1{color:var(--text-light);}
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:26px;padding:70px 0 100px;}
+.blog-card{
+  background:var(--paper);border:1px solid rgba(33,31,41,0.1);border-radius:var(--radius);
+  padding:0;overflow:hidden;cursor:pointer;transition:transform 0.2s ease, box-shadow 0.2s ease;text-align:left;width:100%;
+}
+.blog-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(28,26,36,0.09);}
+.blog-media{height:8px;}
+.blog-body{padding:26px 24px 28px;}
+.blog-body .meta{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.04em;text-transform:uppercase;color:var(--text-mute);display:flex;gap:12px;}
+.blog-body h3{font-size:1.24rem;margin:12px 0 10px;}
+.blog-body p{font-size:0.9rem;color:var(--text-mute);}
+.blog-body .read-more{font-family:var(--mono);font-size:0.75rem;color:var(--gold);margin-top:16px;display:inline-block;}
+
+.article-overlay{position:fixed;inset:0;background:var(--paper);z-index:500;display:none;overflow-y:auto;}
+.article-overlay.open{display:block;}
+.article-top{position:sticky;top:0;background:var(--paper);border-bottom:1px solid rgba(33,31,41,0.1);padding:20px 0;z-index:10;}
+.article-top .wrap{display:flex;justify-content:space-between;align-items:center;}
+.article-back{font-family:var(--mono);font-size:0.78rem;color:var(--text-mute);display:flex;align-items:center;gap:8px;}
+.article-back:hover{color:var(--text-dark);}
+.article-body{max-width:720px;margin:0 auto;padding:60px 32px 120px;}
+.article-body .meta{font-family:var(--mono);font-size:0.72rem;color:var(--gold);letter-spacing:0.04em;text-transform:uppercase;}
+.article-body h1{font-size:clamp(2rem,4vw,2.7rem);margin:16px 0 30px;}
+.article-body p{margin-bottom:20px;font-size:1.02rem;color:var(--text-dark);}
+.article-body p.lede-p{font-size:1.12rem;color:var(--text-mute);font-weight:400;}
+.article-body h3{font-size:1.3rem;margin:34px 0 14px;}
+
+/* ============ FOOTER ============ */
+footer{background:var(--ink);color:var(--text-light-mute);padding:70px 0 30px;}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:50px;border-bottom:1px solid rgba(247,243,234,0.1);}
+.footer-brand .brand{margin-bottom:16px;}
+.footer-brand p{font-size:0.88rem;max-width:32ch;color:var(--text-light-mute);}
+.footer-col h5{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--gold-light);margin-bottom:16px;}
+.footer-col a{display:block;font-size:0.88rem;padding:6px 0;color:var(--text-light-mute);transition:color 0.2s ease;}
+.footer-col a:hover{color:var(--text-light);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:26px;flex-wrap:wrap;gap:12px;}
+.footer-bottom p{font-size:0.76rem;color:rgba(199,194,214,0.6);}
+.disclaimer{font-size:0.76rem;color:rgba(199,194,214,0.6);max-width:640px;line-height:1.6;}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:44px;}
+  .vajra-hero-mark{max-width:220px;}
+  .hero-strip{grid-template-columns:1fr;gap:20px;}
+  .pillar-grid{grid-template-columns:1fr;}
+  .dosha-cards{grid-template-columns:1fr;}
+  .treat-grid{grid-template-columns:1fr;gap:30px;}
+  .booking-grid{grid-template-columns:1fr;}
+  .prac-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:30px;}
+  .form-row{grid-template-columns:1fr;}
+}
+@media (max-width:560px){
+  .wrap{padding:0 20px;}
+  .nav-inner{padding:0 20px;}
+  .hero{padding:140px 0 70px;}
+  .footer-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#home" class="brand">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 3 L23 10 L20 15 L17 10 Z" fill="#B8923F"/>
+        <path d="M20 37 L23 30 L20 25 L17 30 Z" fill="#B8923F"/>
+        <path d="M20 15 L20 25" stroke="#B8923F" stroke-width="2"/>
+        <circle cx="20" cy="20" r="3.4" fill="none" stroke="#B8923F" stroke-width="1.6"/>
+        <path d="M20 3 L11 8 L17 10 Z" fill="#D9BD7C"/>
+        <path d="M20 3 L29 8 L23 10 Z" fill="#D9BD7C"/>
+        <path d="M20 37 L11 32 L17 30 Z" fill="#D9BD7C"/>
+        <path d="M20 37 L29 32 L23 30 Z" fill="#D9BD7C"/>
+      </svg>
+      <span class="brand-text">
+        <span class="name">Vajra</span>
+        <span class="sub">Healthy Living</span>
+      </span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#home" data-route="home">Home</a>
+      <a href="#ayurveda" data-route="ayurveda">Ayurveda</a>
+      <a href="#shop" data-route="shop">Shop</a>
+      <a href="#consultation" data-route="consultation">Consultation</a>
+      <a href="#blogs" data-route="blogs">Journal</a>
+    </div>
+    <div class="nav-actions">
+      <button class="cart-btn" id="cartBtn" aria-label="Open cart">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="10" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg>
+        Cart <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HOME ============ -->
+<section class="page" id="page-home">
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Ancient science, present tense</span>
+        <h1>Balance isn't a trend. In <em>Ayurveda</em>, it's the whole point.</h1>
+        <p class="lede">Vajra Healthy Living brings the 5,000-year-old science of Ayurveda into daily life — through formulations made the traditional way, guidance from qualified practitioners, and plain-language education on how your body actually works.</p>
+        <div class="hero-ctas">
+          <a href="#shop" class="btn btn-primary">Shop remedies</a>
+          <a href="#consultation" class="btn btn-ghost">Talk to a practitioner</a>
+        </div>
+      </div>
+      <div class="vajra-hero-mark">
+        <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g class="orbit">
+            <circle cx="150" cy="150" r="128" stroke="rgba(184,146,63,0.25)" stroke-width="1" stroke-dasharray="2 6"/>
+          </g>
+          <circle cx="150" cy="150" r="95" stroke="rgba(247,243,234,0.1)" stroke-width="1"/>
+          <!-- central vajra -->
+          <g transform="translate(150,150)">
+            <path d="M0 -70 L14 -46 L0 -22 L-14 -46 Z" fill="#B8923F"/>
+            <path d="M0 70 L14 46 L0 22 L-14 46 Z" fill="#B8923F"/>
+            <rect x="-3" y="-22" width="6" height="44" fill="#D9BD7C"/>
+            <circle cx="0" cy="0" r="13" fill="#1C1A24" stroke="#D9BD7C" stroke-width="2"/>
+            <path d="M0 -70 L-24 -54 L-14 -46 Z" fill="#D9BD7C"/>
+            <path d="M0 -70 L24 -54 L14 -46 Z" fill="#D9BD7C"/>
+            <path d="M0 70 L-24 54 L-14 46 Z" fill="#D9BD7C"/>
+            <path d="M0 70 L24 54 L14 46 Z" fill="#D9BD7C"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="wrap hero-strip">
+      <div class="stat"><b>3</b><span>DOSHAS — YOUR BODY'S OPERATING PATTERN</span></div>
+      <div class="stat"><b>40+</b><span>TRADITIONAL FORMULATIONS IN OUR SHOP</span></div>
+      <div class="stat"><b>1:1</b><span>PRACTITIONER CONSULTATIONS, BOOKED ONLINE</span></div>
+    </div>
+  </header>
+
+  <section class="pillars">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">The three pillars</span>
+        <h2>Vata, Pitta, Kapha — the language Ayurveda uses to describe you</h2>
+        <p>Ayurveda holds that everyone is built from the same five elements — earth, water, fire, air, ether — combined into three functional energies, called doshas. Most people run on a blend of two, with one usually dominant.</p>
+      </div>
+      <div class="pillar-grid">
+        <div class="pillar-card vata">
+          <span class="dot"></span>
+          <span class="tag">Air + Ether</span>
+          <h3>Vata</h3>
+          <p>Governs movement — breath, circulation, thought. Quick to create, quick to tire. Balanced Vata feels like flow; imbalanced Vata feels like scatter.</p>
+        </div>
+        <div class="pillar-card pitta">
+          <span class="dot"></span>
+          <span class="tag">Fire + Water</span>
+          <h3>Pitta</h3>
+          <p>Governs transformation — digestion, metabolism, focus. Sharp and driven by nature. Balanced Pitta is clarity; imbalanced Pitta is heat and edge.</p>
+        </div>
+        <div class="pillar-card kapha">
+          <span class="dot"></span>
+          <span class="tag">Water + Earth</span>
+          <h3>Kapha</h3>
+          <p>Governs structure — immunity, stability, lubrication. Steady and grounded by nature. Balanced Kapha is strength; imbalanced Kapha is inertia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pillars" style="padding-top:0;">
+    <div class="wrap tridosha-wrap">
+      <svg viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="200" cy="140" r="110" fill="#7E9BC2" opacity="0.55"/>
+        <circle cx="130" cy="250" r="110" fill="#C1502E" opacity="0.55"/>
+        <circle cx="270" cy="250" r="110" fill="#5B7553" opacity="0.55"/>
+        <text x="200" y="95" text-anchor="middle" font-family="IBM Plex Mono" font-size="15" fill="#211F29" font-weight="500">VATA</text>
+        <text x="90" y="270" text-anchor="middle" font-family="IBM Plex Mono" font-size="15" fill="#211F29" font-weight="500">PITTA</text>
+        <text x="310" y="270" text-anchor="middle" font-family="IBM Plex Mono" font-size="15" fill="#211F29" font-weight="500">KAPHA</text>
+        <text x="200" y="230" text-anchor="middle" font-family="Fraunces" font-size="14" fill="#F7F3EA" font-style="italic">Prakriti</text>
+      </svg>
+    </div>
+    <p style="text-align:center;color:var(--text-mute);font-size:0.9rem;max-width:46ch;margin:0 auto;">This overlap is your <em>prakriti</em> — your natural constitution, set at birth and referenced in every consultation we offer.</p>
+  </section>
+
+  <div class="band">
+    <div class="wrap">
+      <span class="eyebrow" style="justify-content:center;">Where to start</span>
+      <h2>Not sure which dosha runs the show? A 20-minute consultation will tell you — and what to do about it.</h2>
+      <div class="ctas">
+        <a href="#consultation" class="btn btn-primary">Book a consultation</a>
+        <a href="#ayurveda" class="btn btn-ghost">Learn the fundamentals</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AYURVEDA ============ -->
+<section class="page" id="page-ayurveda">
+  <header class="page-header">
+    <div class="wrap">
+      <span class="eyebrow">The science, unpacked</span>
+      <h1>History, the doshas, and how Ayurvedic treatment actually works</h1>
+      <p>Ayurveda — from <em>ayus</em> (life) and <em>veda</em> (knowledge) — is one of the world's oldest continuously practiced medical systems. Here's the grounding you need before your first bottle of oil or first consultation.</p>
+    </div>
+  </header>
+
+  <section class="timeline">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Origins</span>
+        <h2>A five-thousand-year timeline</h2>
+      </div>
+      <div class="timeline-list">
+        <div class="tl-item">
+          <span class="era">c. 1500 BCE</span>
+          <h4>Vedic roots</h4>
+          <p>References to healing herbs and ritual medicine appear in the Atharvaveda, laying the groundwork for a formal medical tradition.</p>
+        </div>
+        <div class="tl-item">
+          <span class="era">c. 600 BCE – 200 CE</span>
+          <h4>The classical texts</h4>
+          <p>The Charaka Samhita (internal medicine) and Sushruta Samhita (surgery) are compiled, systematizing diagnosis, anatomy, pharmacology, and surgical technique into what we now call classical Ayurveda.</p>
+        </div>
+        <div class="tl-item">
+          <span class="era">c. 200 – 1200 CE</span>
+          <h4>Eight branches formalized</h4>
+          <p><em>Ashtanga Ayurveda</em> takes shape — eight specialized branches spanning internal medicine, surgery, toxicology, pediatrics, and psychiatry, taught at institutions like Nalanda and Takshashila.</p>
+        </div>
+        <div class="tl-item">
+          <span class="era">c. 1200 – 1800 CE</span>
+          <h4>Regional spread and synthesis</h4>
+          <p>Ayurveda travels across South and Southeast Asia, exchanging ideas with Siddha, Unani, and Tibetan medicine along the way.</p>
+        </div>
+        <div class="tl-item">
+          <span class="era">1835 – 1947</span>
+          <h4>Marginalization under colonial policy</h4>
+          <p>Colonial medical administration favors biomedicine, and government funding for Ayurvedic education and practice sharply declines.</p>
+        </div>
+        <div class="tl-item">
+          <span class="era">1947 – present</span>
+          <h4>Institutional revival</h4>
+          <p>Independent India re-establishes Ayurvedic colleges and a dedicated ministry (AYUSH); the WHO now recognizes traditional medicine systems, and global research into Ayurvedic herbs has expanded steadily.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="doshas-section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">The tridosha theory</span>
+        <h2>Vata, Pitta, Kapha — in depth</h2>
+        <p>Every bodily function is understood as an expression of one of three doshas. Diagnosis and treatment both start with figuring out which is out of place.</p>
+      </div>
+      <div class="dosha-cards">
+        <div class="dosha-card" style="--c:#7E9BC2;">
+          <svg class="glyph" viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="none" stroke="#7E9BC2" stroke-width="2"/><path d="M8 20 Q20 8 32 20 Q20 32 8 20" fill="none" stroke="#7E9BC2" stroke-width="1.4"/></svg>
+          <h3>Vata</h3>
+          <span class="elements">Air · Ether</span>
+          <div class="divider"></div>
+          <p class="qualities">Dry, light, cold, mobile, subtle, irregular. Vata governs the nervous system, breath, and elimination — anything involving motion.</p>
+          <div class="state balanced"><b>In balance</b><p>Creativity, adaptability, quick thinking, natural rhythm.</p></div>
+          <div class="state imbalanced"><b>Out of balance</b><p>Anxiety, insomnia, dry skin, irregular digestion, racing thoughts.</p></div>
+        </div>
+        <div class="dosha-card" style="--c:#C1502E;">
+          <svg class="glyph" viewBox="0 0 40 40"><path d="M20 5 L28 20 L20 35 L12 20 Z" fill="none" stroke="#C1502E" stroke-width="2"/></svg>
+          <h3>Pitta</h3>
+          <span class="elements">Fire · Water</span>
+          <div class="divider"></div>
+          <p class="qualities">Hot, sharp, light, oily, intense. Pitta governs digestion, metabolism, and how you process — food, information, emotion.</p>
+          <div class="state balanced"><b>In balance</b><p>Strong digestion, sharp intellect, courage, warm leadership.</p></div>
+          <div class="state imbalanced"><b>Out of balance</b><p>Irritability, acidity, inflammation, rashes, an over-heated drive.</p></div>
+        </div>
+        <div class="dosha-card" style="--c:#5B7553;">
+          <svg class="glyph" viewBox="0 0 40 40"><rect x="6" y="6" width="28" height="28" rx="4" fill="none" stroke="#5B7553" stroke-width="2"/></svg>
+          <h3>Kapha</h3>
+          <span class="elements">Water · Earth</span>
+          <div class="divider"></div>
+          <p class="qualities">Heavy, slow, steady, cool, oily. Kapha governs structure, immunity, and lubrication — the body's ballast.</p>
+          <div class="state balanced"><b>In balance</b><p>Strength, endurance, calm, loyalty, resilient immunity.</p></div>
+          <div class="state imbalanced"><b>Out of balance</b><p>Lethargy, weight gain, congestion, resistance to change.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="treatment-section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">How treatment works</span>
+        <h2>From diagnosis to daily practice</h2>
+        <p>Ayurvedic treatment isn't a single remedy — it's a layered system that runs from initial assessment down to what's on your plate each morning.</p>
+      </div>
+      <div class="treat-grid">
+        <div class="treat-card">
+          <h4><span class="num">01</span> Prakriti assessment</h4>
+          <p>A practitioner reads pulse, tongue, skin, and lifestyle patterns to determine your baseline constitution and your current state of imbalance (<em>vikriti</em>) — the gap between the two is the treatment target.</p>
+        </div>
+        <div class="treat-card">
+          <h4><span class="num">02</span> Agni — the digestive fire</h4>
+          <p>Ayurveda treats digestive strength as the root of most imbalance. Treatment plans routinely start by stabilizing agni before addressing anything else.</p>
+        </div>
+        <div class="treat-card">
+          <h4><span class="num">03</span> Panchakarma — deep cleansing</h4>
+          <p>A five-part detoxification protocol used for more significant imbalances, always under supervision:</p>
+          <ul class="panchakarma-list">
+            <li><strong>Vamana</strong> — therapeutic emesis for Kapha excess</li>
+            <li><strong>Virechana</strong> — purgation for Pitta excess</li>
+            <li><strong>Basti</strong> — medicated enemas for Vata excess</li>
+            <li><strong>Nasya</strong> — nasal administration for head and neck</li>
+            <li><strong>Raktamokshana</strong> — blood purification therapy</li>
+          </ul>
+        </div>
+        <div class="treat-card">
+          <h4><span class="num">04</span> Dinacharya — daily routine</h4>
+          <p>Waking before sunrise, tongue scraping, oil pulling, self-massage (<em>abhyanga</em>), and consistent mealtimes — small daily anchors believed to keep doshas from drifting.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- ============ SHOP ============ -->
+<section class="page" id="page-shop">
+  <header class="page-header" style="padding-bottom:40px;">
+    <div class="wrap">
+      <span class="eyebrow">The apothecary</span>
+      <h1>Formulations made the traditional way</h1>
+      <p>Churnas, oils, and rasayanas prepared according to classical methods. Every product is tagged by the dosha it's traditionally used to pacify.</p>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="shop-filters" id="shopFilters">
+      <button class="filter-btn active" data-filter="all">All products</button>
+      <button class="filter-btn" data-filter="vata">Vata-pacifying</button>
+      <button class="filter-btn" data-filter="pitta">Pitta-pacifying</button>
+      <button class="filter-btn" data-filter="kapha">Kapha-pacifying</button>
+      <button class="filter-btn" data-filter="tridoshic">Tridoshic</button>
+    </div>
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+</section>
+
+<!-- ============ CONSULTATION ============ -->
+<section class="page" id="page-consultation">
+  <header class="page-header" style="padding-bottom:40px;">
+    <div class="wrap">
+      <span class="eyebrow">Guided, not guessed</span>
+      <h1>Talk to a registered Ayurvedic practitioner</h1>
+      <p>Self-education goes a long way, but choosing the right herb, dose, and routine for your body benefits from a real assessment. Book a video consultation below.</p>
+    </div>
+  </header>
+
+  <section class="practitioners">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Our practitioners</span>
+        <h2>Every consultation is led by a BAMS-qualified doctor</h2>
+      </div>
+      <div class="prac-grid" id="pracGrid"></div>
+    </div>
+  </section>
+
+  <section class="booking-section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Book a session</span>
+        <h2>Reserve a 20-minute video consultation</h2>
+        <p>Tell us a little about what's going on. A practitioner will confirm your slot by email within one business day.</p>
+      </div>
+      <div class="booking-grid">
+        <form id="bookingForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">Full name</label>
+              <input type="text" id="fname" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label for="femail">Email</label>
+              <input type="email" id="femail" placeholder="you@email.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fdate">Preferred date</label>
+              <input type="date" id="fdate" required>
+            </div>
+            <div class="form-group">
+              <label for="ftime">Preferred time</label>
+              <input type="time" id="ftime" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fprac">Practitioner</label>
+            <select id="fprac">
+              <option>No preference — match me with the first available</option>
+              <option>Dr. Anjali Rao — Digestive health &amp; Panchakarma</option>
+              <option>Dr. Vikram Nair — Stress, sleep &amp; Vata disorders</option>
+              <option>Dr. Meera Iyer — Women's health &amp; skin</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fconcern">What would you like help with?</label>
+            <textarea id="fconcern" rows="4" placeholder="A brief description of your concern or goal"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Request appointment</button>
+          <div class="confirm-panel" id="confirmPanel">
+            <h4>Request received</h4>
+            <p id="confirmText"></p>
+          </div>
+        </form>
+        <div class="booking-info">
+          <h4>What to expect</h4>
+          <ul>
+            <li>A 20-minute video call, one on one with a BAMS-qualified practitioner.</li>
+            <li>A dosha and lifestyle assessment based on your intake notes.</li>
+            <li>A written summary with recommended products and routine changes.</li>
+            <li>Optional follow-up scheduling if ongoing treatment is advised.</li>
+            <li>Consultations are educational and complementary — not a replacement for emergency or diagnosed medical care.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- ============ BLOGS ============ -->
+<section class="page" id="page-blogs">
+  <header class="blog-hero">
+    <div class="wrap">
+      <span class="eyebrow">The journal</span>
+      <h1>Notes on Ayurveda and healthy living</h1>
+      <p style="color:var(--text-light-mute);margin-top:16px;max-width:56ch;font-weight:300;">Five short reads to get you oriented — from the basics of your dosha to what a Panchakarma cleanse actually involves.</p>
+    </div>
+  </header>
+  <div class="wrap">
+    <div class="blog-grid" id="blogGrid"></div>
+  </div>
+</section>
+
+<!-- ============ ARTICLE OVERLAY ============ -->
+<div class="article-overlay" id="articleOverlay">
+  <div class="article-top">
+    <div class="wrap">
+      <button class="article-back" id="articleBack">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Journal
+      </button>
+    </div>
+  </div>
+  <div class="article-body" id="articleBody"></div>
+</div>
+
+<!-- ============ CART MODAL ============ -->
+<div class="overlay" id="cartOverlay">
+  <div class="modal">
+    <button class="modal-close" id="cartClose" aria-label="Close cart">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <h3>Your cart</h3>
+    <div id="cartItems"></div>
+    <div class="cart-total" id="cartTotal" style="display:none;">
+      <span>Total</span><span id="cartTotalAmt"></span>
+    </div>
+    <p class="checkout-note" id="checkoutNote" style="display:none;">This is a demo storefront — checkout isn't connected to payment processing yet. In the live version, this button would take you to secure checkout.</p>
+    <button class="btn btn-primary" id="checkoutBtn" style="width:100%;justify-content:center;margin-top:16px;display:none;">Proceed to checkout</button>
+  </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="brand">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28">
+            <path d="M20 3 L23 10 L20 15 L17 10 Z" fill="#B8923F"/>
+            <path d="M20 37 L23 30 L20 25 L17 30 Z" fill="#B8923F"/>
+            <path d="M20 15 L20 25" stroke="#B8923F" stroke-width="2"/>
+            <circle cx="20" cy="20" r="3.4" fill="none" stroke="#B8923F" stroke-width="1.6"/>
+          </svg>
+          <span class="brand-text"><span class="name">Vajra</span><span class="sub">Healthy Living</span></span>
+        </a>
+        <p>Traditional Ayurvedic formulations, plain-language education, and real practitioner guidance — for a system of medicine that's been tested for five thousand years.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Explore</h5>
+        <a href="#ayurveda">Ayurveda basics</a>
+        <a href="#shop">Shop products</a>
+        <a href="#consultation">Book a consultation</a>
+        <a href="#blogs">Journal</a>
+      </div>
+      <div class="footer-col">
+        <h5>Support</h5>
+        <a href="#">Shipping &amp; returns</a>
+        <a href="#">FAQ</a>
+        <a href="#">Contact us</a>
+        <a href="#">Track an order</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="#">hello@vajrahealthyliving.com</a>
+        <a href="#">+1 (555) 019-2244</a>
+        <a href="#">Houston, TX</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="disclaimer">Vajra Healthy Living provides educational content and traditional wellness products. This site and its practitioners do not diagnose disease and are not a substitute for professional medical care — please consult a physician for medical concerns.</p>
+      <p>© 2026 Vajra Healthy Living</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============ DATA ============ */
+const doshaColor = { vata:'#4F6E99', pitta:'#963B20', kapha:'#425A3B', tridoshic:'#B8923F' };
+const doshaLabel = { vata:'Vata', pitta:'Pitta', kapha:'Kapha', tridoshic:'Tridoshic' };
+
+const products = [
+  {id:'p1', name:'Triphala Churna', cat:'Digestive Powder', dosha:'tridoshic', price:18, desc:'A three-fruit blend taken nightly to support gentle detoxification and regularity.'},
+  {id:'p2', name:'Ashwagandha Root Capsules', cat:'Adaptogen', dosha:'vata', price:24, desc:'Traditional root extract used to support stress resilience and steady energy.'},
+  {id:'p3', name:'Brahmi Ghrita', cat:'Medicated Ghee', dosha:'vata', price:32, desc:'Herb-infused clarified butter traditionally used to support memory and mental clarity.'},
+  {id:'p4', name:'Chyawanprash', cat:'Herbal Jam', dosha:'tridoshic', price:22, desc:'A dense, amla-based tonic taken daily to support immunity through the seasons.'},
+  {id:'p5', name:'Neem &amp; Turmeric Face Pack', cat:'Skin Care', dosha:'pitta', price:16, desc:'A cooling clay-and-herb mask traditionally used to calm heat-driven skin concerns.'},
+  {id:'p6', name:'Abhyanga Sesame Oil', cat:'Massage Oil', dosha:'vata', price:28, desc:'Warm-pressed oil for daily self-massage, the cornerstone of a grounding dinacharya.'},
+  {id:'p7', name:'Tulsi-Ginger Tea', cat:'Herbal Tea', dosha:'kapha', price:14, desc:'A warming, decongesting blend for sluggish mornings and heavy seasons.'},
+  {id:'p8', name:'Shatavari Root Powder', cat:"Women's Wellness", dosha:'pitta', price:20, desc:'A cooling, nourishing root traditionally used to support hormonal balance.'},
+  {id:'p9', name:'Guggul Tablets', cat:'Joint Support', dosha:'kapha', price:26, desc:'Resin-based formulation traditionally used to support joint comfort and metabolism.'},
+  {id:'p10', name:'Copper Tongue Cleaner', cat:'Dinacharya Tool', dosha:'tridoshic', price:9, desc:'A daily-ritual essential — scrapes overnight toxins (ama) before your first meal.'},
+  {id:'p11', name:'Punarnava Capsules', cat:'Fluid Balance', dosha:'kapha', price:22, desc:'Traditionally used to support healthy fluid balance and kidney function.'},
+  {id:'p12', name:'Nasya Oil', cat:'Nasal Therapy', dosha:'vata', price:19, desc:'A few drops each morning to support clear breathing and calm the mind.'},
+];
+
+const practitioners = [
+  {name:'Dr. Anjali Rao', cred:'BAMS, MD (Ayurveda)', focus:'Digestive health &amp; Panchakarma protocols', years:'14 years practicing', initials:'AR', color:'var(--pitta-deep)'},
+  {name:'Dr. Vikram Nair', cred:'BAMS', focus:'Stress, sleep &amp; Vata-type disorders', years:'9 years practicing', initials:'VN', color:'var(--vata-deep)'},
+  {name:'Dr. Meera Iyer', cred:'BAMS, MSc Ayurveda', focus:"Women's health &amp; skin conditions", years:'11 years practicing', initials:'MI', color:'var(--kapha-deep)'},
+];
+
+const blogs = [
+  {
+    id:'b1', tag:'Fundamentals', time:'6 min read', color:'var(--vata)',
+    title:"What Is Your Dosha? A Beginner's Guide to the Three Constitutions",
+    excerpt:'Before you buy a single herb, it helps to know what you\'re actually treating. Here\'s a plain-language walkthrough of Vata, Pitta, and Kapha.',
+    content:[
+      {p:'Almost every question in Ayurveda eventually comes back to one thing: what is your dosha? It sounds mystical, but the concept is closer to a physiological typing system than a horoscope. Your dosha describes the pattern your body defaults to — how you digest, sleep, think, and respond to stress — and it gives a practitioner a starting point before anything else is prescribed.'},
+      {h:'Three energies, five elements'},
+      {p:'Ayurveda holds that everything, including the human body, is built from five elements: earth, water, fire, air, and ether. These combine into three functional energies, or doshas. Vata (air and ether) governs movement — breath, circulation, nerve impulses. Pitta (fire and water) governs transformation — digestion, metabolism, cognition. Kapha (water and earth) governs structure — immunity, lubrication, stability.'},
+      {p:'Nobody is purely one dosha. Most people run on a two-dosha blend, with one typically dominant. That combination — set at birth — is your prakriti, or natural constitution. It rarely changes over a lifetime, even though your current state of balance absolutely does.'},
+      {h:'Spotting your dominant dosha'},
+      {p:'A few quick tells: Vata types tend to be thin-framed, quick-moving, and prone to dry skin and cold hands. Pitta types run warm, have a strong appetite, and lean toward intensity and sharp focus. Kapha types have a sturdier build, calm temperament, and steady, slow-to-tire energy. Most people recognize a blend of two descriptions immediately.'},
+      {h:'Why it matters for treatment'},
+      {p:'Once a dominant dosha is identified, diet, herbs, daily routine, and even the pace of exercise are all tailored to either pacify an excess or support a deficiency. A Vata-heavy diet plan looks nothing like a Kapha-heavy one, even if the underlying goal — balance — is the same. This is why a proper consultation, not just a quiz, is worth the twenty minutes.'},
+    ]
+  },
+  {
+    id:'b2', tag:'Digestion', time:'5 min read', color:'var(--pitta)',
+    title:'Agni: Why Ayurveda Treats Digestion as the Root of Health',
+    excerpt:'Ayurvedic practitioners ask about digestion before almost anything else. Here\'s why agni, or digestive fire, sits at the center of the whole system.',
+    content:[
+      {p:'If there is one concept that separates an Ayurvedic consultation from a typical wellness chat, it\'s the emphasis on agni — digestive fire. Long before modern research connected gut health to immunity, mood, and inflammation, Ayurveda had already placed digestion at the center of its entire diagnostic model.'},
+      {h:'More than just digestion'},
+      {p:'Agni doesn\'t only refer to breaking down food. It describes the body\'s general capacity to transform anything it takes in — food, water, sensory experience, even emotion — into usable energy rather than accumulated waste. When agni is strong, that transformation is clean and complete. When it\'s weak or erratic, undigested residue, called ama, is believed to build up and become the root of disease.'},
+      {h:'The four states of agni'},
+      {p:'Practitioners typically describe four patterns: balanced agni (steady appetite, comfortable digestion), variable agni (associated with Vata, appetite fluctuates), sharp agni (associated with Pitta, intense hunger, fast digestion), and slow agni (associated with Kapha, sluggish digestion, heaviness after meals). Treatment often starts by identifying which pattern is at play.'},
+      {h:'Everyday ways to support it'},
+      {p:'Common recommendations include eating the largest meal at midday when digestive fire is naturally strongest, avoiding iced drinks with meals, leaving three to four hours between meals, and favoring warm, freshly cooked food over cold or heavily processed options. None of it is exotic — the philosophy is closer to giving the digestive system consistent, predictable conditions to work with.'},
+    ]
+  },
+  {
+    id:'b3', tag:'Daily Practice', time:'5 min read', color:'var(--kapha)',
+    title:'Dinacharya: Building a Daily Routine the Ayurvedic Way',
+    excerpt:'You don\'t need a full lifestyle overhaul to start. Here\'s the Ayurvedic case for a handful of small, repeatable morning habits.',
+    content:[
+      {p:'Dinacharya translates roughly to "daily routine," and it\'s one of the more approachable entry points into Ayurvedic practice — no herbs, no consultation required, just a sequence of small habits performed at roughly the same time each day.'},
+      {h:'Why timing matters'},
+      {p:'Ayurveda maps each dosha to a period of the day — Kapha dominates early morning, Pitta takes over midday, Vata rises in the evening — and dinacharya is designed to work with those shifts rather than against them. Waking before sunrise, for instance, is meant to catch the tail end of the light, energizing Vata period before heavier Kapha energy settles in.'},
+      {h:'A simple starter sequence'},
+      {p:'A typical routine includes: waking around the same time daily, scraping the tongue to remove overnight buildup before drinking water, oil pulling or a warm glass of water to gently stimulate digestion, a few minutes of self-massage with warm oil (abhyanga) to ground the nervous system, and a short period of movement or breathing before the day\'s first meal.'},
+      {h:'Consistency over intensity'},
+      {p:'The philosophy here isn\'t about doing more — it\'s about doing the same handful of things reliably enough that the body stops guessing what comes next. Most practitioners suggest starting with just one or two elements, like tongue scraping and a consistent wake time, before building the full sequence.'},
+    ]
+  },
+  {
+    id:'b4', tag:'Nutrition', time:'6 min read', color:'var(--pitta)',
+    title:'Six Tastes, One Plate: The Ayurvedic Approach to Balanced Eating',
+    excerpt:'Ayurvedic nutrition isn\'t built around calories or macros — it\'s built around taste. Here\'s how the six-taste model actually works at mealtime.',
+    content:[
+      {p:'Modern nutrition tends to organize food around nutrients — protein, fiber, carbohydrates. Ayurveda organizes it around taste, or rasa, on the theory that taste itself carries information the body uses to regulate digestion and mood.'},
+      {h:'The six tastes'},
+      {p:'Ayurveda recognizes six tastes: sweet, sour, salty, pungent, bitter, and astringent. Each is associated with specific elements and effects — sweet is grounding and nourishing, sour stimulates digestion, salty aids absorption, pungent heats and clears, bitter detoxifies, and astringent tightens and dries. The guiding principle is that a meal containing all six tastes leaves you naturally satisfied, reducing the urge to snack or overeat.'},
+      {h:'Taste and dosha'},
+      {p:'Each taste also either pacifies or aggravates specific doshas. Sweet, sour, and salty tastes tend to increase Kapha and calm Vata; pungent, bitter, and astringent tastes tend to increase Vata and calm Kapha. A Pitta-dominant person is generally advised to favor sweet, bitter, and astringent tastes while going easy on sour, salty, and pungent ones, which can aggravate heat.'},
+      {h:'Putting it on a plate'},
+      {p:'In practice, this doesn\'t require elaborate cooking — a simple lentil dish with a squeeze of lime (sour), a pinch of salt, a hint of chili (pungent), some leafy greens (bitter), and a side of grain (sweet) covers most of the six tastes in one bowl. Over time, the aim is less about counting tastes and more about noticing which ones you\'re consistently reaching for, and which you\'re avoiding.'},
+    ]
+  },
+  {
+    id:'b5', tag:'Treatment', time:'7 min read', color:'var(--vata)',
+    title:'Panchakarma Explained: What Ayurvedic Detox Actually Involves',
+    excerpt:'"Detox" gets thrown around loosely in wellness marketing. Panchakarma is the real, supervised version — here\'s what it actually involves.',
+    content:[
+      {p:'Panchakarma, meaning "five actions," is Ayurveda\'s formal detoxification protocol — and it bears little resemblance to the juice-cleanse version of "detox" that\'s become common in wellness marketing. It\'s a supervised, multi-week process, typically recommended for more significant or long-standing imbalances rather than as routine maintenance.'},
+      {h:'Preparation comes first'},
+      {p:'Before any of the five main procedures begin, most protocols include a preparatory phase called purvakarma — internal oiling (snehana) and heat therapy (swedana) designed to loosen accumulated toxins (ama) and move them toward the digestive tract, where they can be eliminated.'},
+      {h:'The five procedures'},
+      {p:'Vamana is therapeutic emesis, used mainly for Kapha-related congestion. Virechana is a supervised purgation therapy aimed at excess Pitta. Basti refers to medicated enemas, considered especially effective for Vata disorders given how much of Vata\'s activity is centered in the colon. Nasya is the nasal administration of herbal oils, used for conditions affecting the head, sinuses, and neck. Raktamokshana, blood-purification therapy, is used far more selectively and only under direct medical supervision.'},
+      {h:'Not a DIY protocol'},
+      {p:'Every reputable source is emphatic on one point: Panchakarma is not something to self-administer. The preparatory and procedural phases are physically demanding, and choosing the wrong sequence for your constitution can do more harm than good. If you\'re curious whether it\'s appropriate for you, that\'s exactly the kind of question a practitioner consultation is designed to answer.'},
+    ]
+  },
+];
+
+/* ============ ROUTING ============ */
+const routes = ['home','ayurveda','shop','consultation','blogs'];
+function navigate(){
+  let hash = location.hash.replace('#','') || 'home';
+  if(!routes.includes(hash)) hash = 'home';
+  routes.forEach(r=>{
+    document.getElementById('page-'+r).classList.toggle('active', r===hash);
+  });
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.classList.toggle('active', a.dataset.route===hash);
+  });
+  document.getElementById('navLinks').classList.remove('open');
+  closeArticle();
+  window.scrollTo(0,0);
+}
+window.addEventListener('hashchange', navigate);
+window.addEventListener('DOMContentLoaded', ()=>{
+  renderProducts('all');
+  renderPractitioners();
+  renderBlogs();
+  navigate();
+});
+
+/* Mobile menu */
+document.getElementById('menuToggle').addEventListener('click', ()=>{
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+/* ============ SHOP ============ */
+function renderProducts(filter){
+  const grid = document.getElementById('productGrid');
+  grid.innerHTML = '';
+  const list = filter==='all' ? products : products.filter(p=>p.dosha===filter);
+  list.forEach(p=>{
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <div class="product-media">
+        <span class="dosha-chip" style="background:${doshaColor[p.dosha]}">${doshaLabel[p.dosha]}</span>
+        <svg viewBox="0 0 60 60" fill="none"><path d="M20 12h20v6a10 10 0 0 1-10 10 10 10 0 0 1-10-10z" stroke="#B8923F" stroke-width="2"/><path d="M30 28v20M22 48h16" stroke="#B8923F" stroke-width="2"/></svg>
+      </div>
+      <div class="product-body">
+        <span class="cat">${p.cat}</span>
+        <h3>${p.name}</h3>
+        <p class="desc">${p.desc}</p>
+        <div class="product-foot">
+          <span class="price">$${p.price}</span>
+          <button class="add-btn" data-id="${p.id}">Add to cart</button>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+  grid.querySelectorAll('.add-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=> addToCart(btn.dataset.id, btn));
+  });
+}
+document.getElementById('shopFilters').addEventListener('click', e=>{
+  const btn = e.target.closest('.filter-btn');
+  if(!btn) return;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderProducts(btn.dataset.filter);
+});
+
+/* ============ CART ============ */
+let cart = {};
+function addToCart(id, btn){
+  cart[id] = (cart[id]||0)+1;
+  updateCartBadge();
+  if(btn){
+    btn.textContent = 'Added ✓';
+    btn.classList.add('added');
+    setTimeout(()=>{ btn.textContent='Add to cart'; btn.classList.remove('added'); }, 1200);
+  }
+}
+function updateCartBadge(){
+  const count = Object.values(cart).reduce((a,b)=>a+b,0);
+  document.getElementById('cartBadge').textContent = count;
+}
+function renderCart(){
+  const wrap = document.getElementById('cartItems');
+  const ids = Object.keys(cart);
+  if(ids.length===0){
+    wrap.innerHTML = '<p class="cart-empty">Your cart is empty. Browse the shop to add a few remedies.</p>';
+    document.getElementById('cartTotal').style.display='none';
+    document.getElementById('checkoutNote').style.display='none';
+    document.getElementById('checkoutBtn').style.display='none';
+    return;
+  }
+  let total = 0;
+  wrap.innerHTML = ids.map(id=>{
+    const p = products.find(x=>x.id===id);
+    const qty = cart[id];
+    total += p.price*qty;
+    return `<div class="cart-row">
+      <div>
+        <div class="ci-name">${p.name}</div>
+        <div class="ci-meta">Qty ${qty} · $${p.price} each</div>
+      </div>
+      <button class="ci-remove" data-id="${id}">Remove</button>
+    </div>`;
+  }).join('');
+  document.getElementById('cartTotal').style.display='flex';
+  document.getElementById('cartTotalAmt').textContent = '$'+total.toFixed(2);
+  document.getElementById('checkoutNote').style.display='block';
+  document.getElementById('checkoutBtn').style.display='flex';
+  wrap.querySelectorAll('.ci-remove').forEach(b=>{
+    b.addEventListener('click', ()=>{ delete cart[b.dataset.id]; updateCartBadge(); renderCart(); });
+  });
+}
+document.getElementById('cartBtn').addEventListener('click', ()=>{
+  renderCart();
+  document.getElementById('cartOverlay').classList.add('open');
+});
+document.getElementById('cartClose').addEventListener('click', ()=> document.getElementById('cartOverlay').classList.remove('open'));
+document.getElementById('cartOverlay').addEventListener('click', e=>{
+  if(e.target.id==='cartOverlay') document.getElementById('cartOverlay').classList.remove('open');
+});
+document.getElementById('checkoutBtn').addEventListener('click', ()=>{
+  alert('This is a demo storefront — checkout isn\'t wired up to payment processing yet.');
+});
+
+/* ============ CONSULTATION ============ */
+function renderPractitioners(){
+  const grid = document.getElementById('pracGrid');
+  grid.innerHTML = practitioners.map(pr=>`
+    <div class="prac-card">
+      <div class="prac-avatar" style="background:${pr.color}">${pr.initials}</div>
+      <h4>${pr.name}</h4>
+      <span class="cred">${pr.cred}</span>
+      <p class="focus">${pr.focus}</p>
+      <span class="years">${pr.years}</span>
+    </div>`).join('');
+}
+document.getElementById('bookingForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const name = document.getElementById('fname').value || 'there';
+  const date = document.getElementById('fdate').value;
+  const time = document.getElementById('ftime').value;
+  const panel = document.getElementById('confirmPanel');
+  document.getElementById('confirmText').textContent =
+    `Thanks, ${name} — we've noted your request for ${date || 'your preferred date'} at ${time || 'your preferred time'}. A confirmation email is on its way, along with a short intake form to fill out before the call.`;
+  panel.classList.add('show');
+  panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+});
+
+/* ============ BLOGS ============ */
+function renderBlogs(){
+  const grid = document.getElementById('blogGrid');
+  grid.innerHTML = blogs.map(b=>`
+    <button class="blog-card" data-id="${b.id}">
+      <div class="blog-media" style="background:${b.color}"></div>
+      <div class="blog-body">
+        <div class="meta"><span>${b.tag}</span><span>${b.time}</span></div>
+        <h3>${b.title}</h3>
+        <p>${b.excerpt}</p>
+        <span class="read-more">Read article →</span>
+      </div>
+    </button>`).join('');
+  grid.querySelectorAll('.blog-card').forEach(card=>{
+    card.addEventListener('click', ()=> openArticle(card.dataset.id));
+  });
+}
+function openArticle(id){
+  const b = blogs.find(x=>x.id===id);
+  const body = document.getElementById('articleBody');
+  let html = `<div class="meta">${b.tag} · ${b.time}</div><h1>${b.title}</h1>`;
+  b.content.forEach((block,i)=>{
+    if(block.h) html += `<h3>${block.h}</h3>`;
+    else html += `<p class="${i===0?'lede-p':''}">${block.p}</p>`;
+  });
+  body.innerHTML = html;
+  document.getElementById('articleOverlay').classList.add('open');
+  document.getElementById('articleOverlay').scrollTop = 0;
+}
+function closeArticle(){
+  document.getElementById('articleOverlay').classList.remove('open');
+}
+document.getElementById('articleBack').addEventListener('click', closeArticle);
+</script>
+</body>
+</html>
