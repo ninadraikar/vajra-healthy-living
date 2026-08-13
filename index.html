@@ -866,25 +866,43 @@ footer{background:var(--ink);color:var(--text-light-mute);padding:70px 0 30px;}
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script>
 /* ============ DATA ============ */
 const doshaColor = { vata:'#4F6E99', pitta:'#963B20', kapha:'#425A3B', tridoshic:'#B8923F' };
 const doshaLabel = { vata:'Vata', pitta:'Pitta', kapha:'Kapha', tridoshic:'Tridoshic' };
 
-const products = [
-  {id:'p1', name:'Triphala Churna', cat:'Digestive Powder', dosha:'tridoshic', price:18, desc:'A three-fruit blend taken nightly to support gentle detoxification and regularity.'},
-  {id:'p2', name:'Ashwagandha Root Capsules', cat:'Adaptogen', dosha:'vata', price:24, desc:'Traditional root extract used to support stress resilience and steady energy.'},
-  {id:'p3', name:'Brahmi Ghrita', cat:'Medicated Ghee', dosha:'vata', price:32, desc:'Herb-infused clarified butter traditionally used to support memory and mental clarity.'},
-  {id:'p4', name:'Chyawanprash', cat:'Herbal Jam', dosha:'tridoshic', price:22, desc:'A dense, amla-based tonic taken daily to support immunity through the seasons.'},
-  {id:'p5', name:'Neem &amp; Turmeric Face Pack', cat:'Skin Care', dosha:'pitta', price:16, desc:'A cooling clay-and-herb mask traditionally used to calm heat-driven skin concerns.'},
-  {id:'p6', name:'Abhyanga Sesame Oil', cat:'Massage Oil', dosha:'vata', price:28, desc:'Warm-pressed oil for daily self-massage, the cornerstone of a grounding dinacharya.'},
-  {id:'p7', name:'Tulsi-Ginger Tea', cat:'Herbal Tea', dosha:'kapha', price:14, desc:'A warming, decongesting blend for sluggish mornings and heavy seasons.'},
-  {id:'p8', name:'Shatavari Root Powder', cat:"Women's Wellness", dosha:'pitta', price:20, desc:'A cooling, nourishing root traditionally used to support hormonal balance.'},
-  {id:'p9', name:'Guggul Tablets', cat:'Joint Support', dosha:'kapha', price:26, desc:'Resin-based formulation traditionally used to support joint comfort and metabolism.'},
-  {id:'p10', name:'Copper Tongue Cleaner', cat:'Dinacharya Tool', dosha:'tridoshic', price:9, desc:'A daily-ritual essential — scrapes overnight toxins (ama) before your first meal.'},
-  {id:'p11', name:'Punarnava Capsules', cat:'Fluid Balance', dosha:'kapha', price:22, desc:'Traditionally used to support healthy fluid balance and kidney function.'},
-  {id:'p12', name:'Nasya Oil', cat:'Nasal Therapy', dosha:'vata', price:19, desc:'A few drops each morning to support clear breathing and calm the mind.'},
-];
+/* Product catalog is loaded at runtime from products.xlsx (see loadProducts() below).
+   Expected columns in the workbook's first sheet:
+   Product ID | Company | Product Name | Category | Dosha Tag | Pack Size (assumed) |
+   Primary Use / Positioning | Recommended US Price (USD) | Pricing Notes            */
+let products = [];
+let productsLoadFailed = false;
+
+async function loadProducts(){
+  try{
+    const res = await fetch('products.xlsx');
+    if(!res.ok) throw new Error('Fetch failed: '+res.status);
+    const buf = await res.arrayBuffer();
+    const wb = XLSX.read(buf, {type:'array'});
+    const sheet = wb.Sheets[wb.SheetNames[0]];
+    const rows = XLSX.utils.sheet_to_json(sheet, {defval:''});
+    products = rows.map((row, i) => ({
+      id: String(row['Product ID'] || ('p'+(i+1))),
+      company: String(row['Company'] || ''),
+      name: String(row['Product Name'] || 'Untitled product'),
+      cat: String(row['Category'] || ''),
+      dosha: String(row['Dosha Tag'] || 'tridoshic').toLowerCase().trim(),
+      pack: String(row['Pack Size (assumed)'] || ''),
+      price: Number(row['Recommended US Price (USD)']) || 0,
+      desc: String(row['Primary Use / Positioning'] || ''),
+    })).filter(p => p.name && p.name !== 'Untitled product');
+  }catch(err){
+    console.error('Could not load products.xlsx', err);
+    productsLoadFailed = true;
+    products = [];
+  }
+}
 
 const practitioners = [
   {name:'Dr. Anjali Rao', cred:'BAMS, MD (Ayurveda)', focus:'Digestive health &amp; Panchakarma protocols', years:'14 years practicing', initials:'AR', color:'var(--pitta-deep)'},
@@ -982,11 +1000,14 @@ function navigate(){
   window.scrollTo(0,0);
 }
 window.addEventListener('hashchange', navigate);
-window.addEventListener('DOMContentLoaded', ()=>{
-  renderProducts('all');
+window.addEventListener('DOMContentLoaded', async ()=>{
+  renderProducts('all'); // shows a "Loading…" state immediately
   renderPractitioners();
   renderBlogs();
   navigate();
+  await loadProducts();
+  const activeFilter = document.querySelector('.filter-btn.active');
+  renderProducts(activeFilter ? activeFilter.dataset.filter : 'all');
 });
 
 /* Mobile menu */
@@ -998,19 +1019,31 @@ document.getElementById('menuToggle').addEventListener('click', ()=>{
 function renderProducts(filter){
   const grid = document.getElementById('productGrid');
   grid.innerHTML = '';
+
+  if(productsLoadFailed){
+    grid.innerHTML = '<p class="cart-empty">The product catalog couldn\'t be loaded. Make sure products.xlsx is published in the same folder as this page.</p>';
+    return;
+  }
+  if(products.length === 0){
+    grid.innerHTML = '<p class="cart-empty">Loading products…</p>';
+    return;
+  }
+
   const list = filter==='all' ? products : products.filter(p=>p.dosha===filter);
   list.forEach(p=>{
+    const chipColor = doshaColor[p.dosha] || doshaColor.tridoshic;
+    const chipLabel = doshaLabel[p.dosha] || 'Tridoshic';
     const card = document.createElement('div');
     card.className = 'product-card';
     card.innerHTML = `
       <div class="product-media">
-        <span class="dosha-chip" style="background:${doshaColor[p.dosha]}">${doshaLabel[p.dosha]}</span>
+        <span class="dosha-chip" style="background:${chipColor}">${chipLabel}</span>
         <svg viewBox="0 0 60 60" fill="none"><path d="M20 12h20v6a10 10 0 0 1-10 10 10 10 0 0 1-10-10z" stroke="#B8923F" stroke-width="2"/><path d="M30 28v20M22 48h16" stroke="#B8923F" stroke-width="2"/></svg>
       </div>
       <div class="product-body">
-        <span class="cat">${p.cat}</span>
+        <span class="cat">${p.company ? p.company+' · ' : ''}${p.cat}</span>
         <h3>${p.name}</h3>
-        <p class="desc">${p.desc}</p>
+        <p class="desc">${p.desc}${p.pack ? ' <br><em>'+p.pack+'</em>' : ''}</p>
         <div class="product-foot">
           <span class="price">$${p.price}</span>
           <button class="add-btn" data-id="${p.id}">Add to cart</button>
