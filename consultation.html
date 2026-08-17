@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vajra Healthy Living — Ayurveda, Rebalanced</title>
-<meta name="description" content="Traditional Ayurvedic formulations, practitioner consultations, and plain-language education on Vata, Pitta, and Kapha.">
+<title>Book an Ayurvedic Consultation | Vajra Healthy Living</title>
+<meta name="description" content="Book a 20-minute video consultation with a BAMS-qualified Ayurvedic practitioner. $50 booking fee, secure payment via Stripe.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -50,99 +50,86 @@
     </div>
   </div>
 </nav>
-<header class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <span class="eyebrow">Ancient science, present tense</span>
-        <h1>Balance isn't a trend. In <em>Ayurveda</em>, it's the whole point.</h1>
-        <p class="lede">Vajra Healthy Living brings the 5,000-year-old science of Ayurveda into daily life — through formulations made the traditional way, guidance from qualified practitioners, and plain-language education on how your body actually works.</p>
-        <div class="hero-ctas">
-          <a href="shop.html" class="btn btn-primary">Shop remedies</a>
-          <a href="consultation.html" class="btn btn-ghost">Talk to a practitioner</a>
-        </div>
-      </div>
-      <div class="vajra-hero-mark">
-        <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g class="orbit">
-            <circle cx="150" cy="150" r="128" stroke="rgba(184,146,63,0.25)" stroke-width="1" stroke-dasharray="2 6"/>
-          </g>
-          <circle cx="150" cy="150" r="95" stroke="rgba(247,243,234,0.1)" stroke-width="1"/>
-          <!-- central vajra -->
-          <g transform="translate(150,150)">
-            <path d="M0 -70 L14 -46 L0 -22 L-14 -46 Z" fill="#B8923F"/>
-            <path d="M0 70 L14 46 L0 22 L-14 46 Z" fill="#B8923F"/>
-            <rect x="-3" y="-22" width="6" height="44" fill="#D9BD7C"/>
-            <circle cx="0" cy="0" r="13" fill="#1C1A24" stroke="#D9BD7C" stroke-width="2"/>
-            <path d="M0 -70 L-24 -54 L-14 -46 Z" fill="#D9BD7C"/>
-            <path d="M0 -70 L24 -54 L14 -46 Z" fill="#D9BD7C"/>
-            <path d="M0 70 L-24 54 L-14 46 Z" fill="#D9BD7C"/>
-            <path d="M0 70 L24 54 L14 46 Z" fill="#D9BD7C"/>
-          </g>
-        </svg>
-      </div>
-    </div>
-    <div class="wrap hero-strip">
-      <div class="stat"><b>3</b><span>DOSHAS — YOUR BODY'S OPERATING PATTERN</span></div>
-      <div class="stat"><b>40+</b><span>TRADITIONAL FORMULATIONS IN OUR SHOP</span></div>
-      <div class="stat"><b>1:1</b><span>PRACTITIONER CONSULTATIONS, BOOKED ONLINE</span></div>
+<header class="page-header" style="padding-bottom:40px;">
+    <div class="wrap">
+      <span class="eyebrow">Guided, not guessed</span>
+      <h1>Talk to a registered Ayurvedic practitioner</h1>
+      <p>Self-education goes a long way, but choosing the right herb, dose, and routine for your body benefits from a real assessment. Book a video consultation below.</p>
     </div>
   </header>
 
-  <section class="pillars">
+  <section class="practitioners">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow">The three pillars</span>
-        <h2>Vata, Pitta, Kapha — the language Ayurveda uses to describe you</h2>
-        <p>Ayurveda holds that everyone is built from the same five elements — earth, water, fire, air, ether — combined into three functional energies, called doshas. Most people run on a blend of two, with one usually dominant.</p>
+        <span class="eyebrow">Our practitioners</span>
+        <h2>Every consultation is led by a BAMS-qualified doctor</h2>
       </div>
-      <div class="pillar-grid">
-        <div class="pillar-card vata">
-          <span class="dot"></span>
-          <span class="tag">Air + Ether</span>
-          <h3>Vata</h3>
-          <p>Governs movement — breath, circulation, thought. Quick to create, quick to tire. Balanced Vata feels like flow; imbalanced Vata feels like scatter.</p>
-        </div>
-        <div class="pillar-card pitta">
-          <span class="dot"></span>
-          <span class="tag">Fire + Water</span>
-          <h3>Pitta</h3>
-          <p>Governs transformation — digestion, metabolism, focus. Sharp and driven by nature. Balanced Pitta is clarity; imbalanced Pitta is heat and edge.</p>
-        </div>
-        <div class="pillar-card kapha">
-          <span class="dot"></span>
-          <span class="tag">Water + Earth</span>
-          <h3>Kapha</h3>
-          <p>Governs structure — immunity, stability, lubrication. Steady and grounded by nature. Balanced Kapha is strength; imbalanced Kapha is inertia.</p>
-        </div>
-      </div>
+      <div class="prac-grid" id="pracGrid"></div>
     </div>
   </section>
 
-  <section class="pillars" style="padding-top:0;">
-    <div class="wrap tridosha-wrap">
-      <svg viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="200" cy="140" r="110" fill="#7E9BC2" opacity="0.55"/>
-        <circle cx="130" cy="250" r="110" fill="#C1502E" opacity="0.55"/>
-        <circle cx="270" cy="250" r="110" fill="#5B7553" opacity="0.55"/>
-        <text x="200" y="95" text-anchor="middle" font-family="IBM Plex Mono" font-size="15" fill="#211F29" font-weight="500">VATA</text>
-        <text x="90" y="270" text-anchor="middle" font-family="IBM Plex Mono" font-size="15" fill="#211F29" font-weight="500">PITTA</text>
-        <text x="310" y="270" text-anchor="middle" font-family="IBM Plex Mono" font-size="15" fill="#211F29" font-weight="500">KAPHA</text>
-        <text x="200" y="230" text-anchor="middle" font-family="Fraunces" font-size="14" fill="#F7F3EA" font-style="italic">Prakriti</text>
-      </svg>
-    </div>
-    <p style="text-align:center;color:var(--text-mute);font-size:0.9rem;max-width:46ch;margin:0 auto;">This overlap is your <em>prakriti</em> — your natural constitution, set at birth and referenced in every consultation we offer.</p>
-  </section>
-
-  <div class="band">
+  <section class="booking-section">
     <div class="wrap">
-      <span class="eyebrow" style="justify-content:center;">Where to start</span>
-      <h2>Not sure which dosha runs the show? A 20-minute consultation will tell you — and what to do about it.</h2>
-      <div class="ctas">
-        <a href="consultation.html" class="btn btn-primary">Book a consultation</a>
-        <a href="ayurveda.html" class="btn btn-ghost">Learn the fundamentals</a>
+      <div class="section-head">
+        <span class="eyebrow">Book a session</span>
+        <h2>Reserve a 20-minute video consultation</h2>
+        <p>Tell us a little about what's going on. A practitioner will confirm your slot by email within one business day.</p>
+      </div>
+      <div class="booking-grid">
+        <form id="bookingForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">Full name</label>
+              <input type="text" id="fname" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label for="femail">Email</label>
+              <input type="email" id="femail" placeholder="you@email.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fdate">Preferred date</label>
+              <input type="date" id="fdate" required>
+            </div>
+            <div class="form-group">
+              <label for="ftime">Preferred time</label>
+              <input type="time" id="ftime" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fprac">Practitioner</label>
+            <select id="fprac">
+              <option>No preference — match me with the first available</option>
+              <option>Dr. Anjali Rao — Digestive health &amp; Panchakarma</option>
+              <option>Dr. Vikram Nair — Stress, sleep &amp; Vata disorders</option>
+              <option>Dr. Meera Iyer — Women's health &amp; skin</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fconcern">What would you like help with?</label>
+            <textarea id="fconcern" rows="4" placeholder="A brief description of your concern or goal"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Pay $50 &amp; book appointment</button>
+          <div class="confirm-panel" id="confirmPanel">
+            <h4>Request received</h4>
+            <p id="confirmText"></p>
+          </div>
+        </form>
+        <div class="booking-info">
+          <h4>What to expect</h4>
+          <ul>
+            <li>A $50 booking fee is collected securely via Stripe when you submit this form — it confirms your slot.</li>
+            <li>A 20-minute video call, one on one with a BAMS-qualified practitioner.</li>
+            <li>A dosha and lifestyle assessment based on your intake notes.</li>
+            <li>A written summary with recommended products and routine changes.</li>
+            <li>Optional follow-up scheduling if ongoing treatment is advised.</li>
+            <li>Consultations are educational and complementary — not a replacement for emergency or diagnosed medical care.</li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 <footer>
   <div class="wrap">
     <div class="footer-grid">
