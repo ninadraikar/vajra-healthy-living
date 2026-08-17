@@ -9,8 +9,8 @@
 // Project Settings -> API -> Project URL / anon public key.
 // The anon key is safe to expose in client code by design (it only allows
 // what your Row Level Security policies permit — see supabase-schema.sql).
-const SUPABASE_URL = 'REPLACE_WITH_YOUR_SUPABASE_URL';
-const SUPABASE_ANON_KEY = 'REPLACE_WITH_YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_URL = 'https://gmrauohsrbogfazqalvt.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdtcmF1b2hzcmJvZ2ZhenFhbHZ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5OTUwMjksImV4cCI6MjEwMjU3MTAyOX0.7of29bujocaWwNyWFhO3UQbHNNLhCV2n6ID2WBZJU-g';
 
 let supabaseClient = null;
 if(!SUPABASE_URL.includes('REPLACE_WITH') && window.supabase){
@@ -386,7 +386,7 @@ function wireCart(){
 // Set this to your deployed Netlify function URL once you've completed the
 // setup in vajra-checkout-function/. Example:
 // 'https://vajra-checkout.netlify.app/.netlify/functions/create-checkout-session'
-const CHECKOUT_FUNCTION_URL = 'REPLACE_WITH_YOUR_NETLIFY_FUNCTION_URL';
+const CHECKOUT_FUNCTION_URL = 'https://delicate-kataifi-aaf865.netlify.app/.netlify/functions/create-checkout-session';
 
 function wireCheckout(){
   const btn = document.getElementById('checkoutBtn');
