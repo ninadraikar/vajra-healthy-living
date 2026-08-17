@@ -328,6 +328,22 @@ button:focus-visible, a:focus-visible{outline:2px solid var(--gold);outline-offs
 .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold);outline:none;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 .form-group select option{color:var(--text-dark);}
+
+/* The Join / Sign-in modal has a LIGHT background, unlike the dark booking
+   section .form-group was originally styled for — override for contrast. */
+#acctOverlay .form-group label{color:var(--text-mute);}
+#acctOverlay .form-group input,
+#acctOverlay .form-group select,
+#acctOverlay .form-group textarea{
+  background:var(--stone);
+  border:1px solid rgba(33,31,41,0.18);
+  color:var(--text-dark);
+}
+#acctOverlay .form-group input::placeholder,
+#acctOverlay .form-group textarea::placeholder{color:var(--text-mute);}
+#acctOverlay .form-group input:focus,
+#acctOverlay .form-group select:focus,
+#acctOverlay .form-group textarea:focus{border-color:var(--gold);outline:none;}
 .booking-info h4{color:var(--text-light);font-size:1.15rem;margin-bottom:14px;}
 .booking-info ul{display:flex;flex-direction:column;gap:12px;}
 .booking-info li{font-size:0.9rem;color:var(--text-light-mute);padding-left:20px;position:relative;}
